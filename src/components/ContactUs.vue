@@ -17,7 +17,7 @@
                   type="text"
                   class="form-control"
                   v-model="frmData.name"
-                  placeholder="Enter Your Name"
+                  placeholder="الاسم"
                   required
                 />
               </div>
@@ -28,7 +28,7 @@
                   type="email"
                   class="form-control"
                   v-model="frmData.email"
-                  placeholder="Enter Your Email"
+                  placeholder="الايميل"
                   required
                 />
               </div>
@@ -39,7 +39,7 @@
                   type="phone"
                   class="form-control"
                   v-model="frmData.phone"
-                  placeholder="Enter Your Phone"
+                  placeholder="الموبايل"
                   required
                 />
               </div>
@@ -50,7 +50,7 @@
                   class="form-control"
                   rows="4"
                   v-model="frmData.message"
-                  placeholder="Enter Your Message"
+                  placeholder="الرسالة"
                   required
                 ></textarea>
               </div>
