@@ -2,7 +2,12 @@
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="@/assets/logo.png" class="img-fluid" alt="rwad-logo" />
+        <img
+          v-if="general.logo"
+          :src="general.logo"
+          class="img-fluid"
+          alt="rwad-logo"
+        />
       </a>
       <button
         class="navbar-toggler text-white"
@@ -23,27 +28,27 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <a href="#about-us" class="nav-link">
+            <a href="/#about-us" class="nav-link">
               من نحن
             </a>
           </li>
           <li class="nav-item">
-            <a href="#our-services" class="nav-link">
+            <a href="/#our-services" class="nav-link">
               خدماتنا
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#clients">
+            <a class="nav-link" href="/#clients">
               عملائنا
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#blogs">
+            <a class="nav-link" href="/#blogs">
               المدونه
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#contact-us">
+            <a class="nav-link" href="/#contact-us">
               تواصل معنا
             </a>
           </li>
@@ -54,7 +59,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['general'],
+}
 </script>
 
 <style lang="scss">

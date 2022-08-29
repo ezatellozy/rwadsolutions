@@ -1,21 +1,19 @@
 <template>
   <section class="content about-us" id="about-us">
-    <div class="container">
+    <div class="container" v-if="items">
       <div class="row align-items-center">
         <div class="col-lg-6 image">
           <img
-            src="@/assets/header-bulb-table.png"
+            v-if="items.image"
+            :src="items.image"
             class="img-fluid"
             alt="about-us"
           />
         </div>
         <div class="col-lg-6 info">
-          <h2 class="title">من هو الرائد</h2>
+          <h2 class="title">{{ items.title }}</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore,
-            accusamus nam architecto placeat qui cumque tenetur sed non animi
-            consequuntur fugiat adipisci, cupiditate incidunt voluptates dicta!
-            Accusamus provident tenetur quae.
+            {{ items.description }}
           </p>
         </div>
       </div>
@@ -24,7 +22,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['items'],
+}
 </script>
 
 <style lang="scss">

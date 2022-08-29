@@ -9,14 +9,16 @@
         obcaecati voluptatibus soluta!
       </p>
       <div class="form mt-5">
-        <form @submit.prevent>
+        <form @submit.prevent="submit">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <input
                   type="text"
                   class="form-control"
+                  v-model="frmData.name"
                   placeholder="Enter Your Name"
+                  required
                 />
               </div>
             </div>
@@ -25,7 +27,9 @@
                 <input
                   type="email"
                   class="form-control"
+                  v-model="frmData.email"
                   placeholder="Enter Your Email"
+                  required
                 />
               </div>
             </div>
@@ -34,7 +38,9 @@
                 <input
                   type="phone"
                   class="form-control"
+                  v-model="frmData.phone"
                   placeholder="Enter Your Phone"
+                  required
                 />
               </div>
             </div>
@@ -43,13 +49,15 @@
                 <textarea
                   class="form-control"
                   rows="4"
+                  v-model="frmData.message"
                   placeholder="Enter Your Message"
+                  required
                 ></textarea>
               </div>
             </div>
             <div class="col-12">
               <button type="submit" class="btn btn-primary">
-                <span>Send Message</span>
+                <span>ارسال</span>
               </button>
             </div>
           </div>
@@ -59,8 +67,38 @@
   </div>
 </template>
 
-<script>
-export default {}
+<script setup>
+import axios from 'axios'
+import { reactive } from 'vue'
+import { createToaster } from '@meforma/vue-toaster'
+
+const toaster = createToaster({ position: 'bottom' })
+
+const frmData = reactive({
+  name: '',
+  email: '',
+  phone: '',
+  message: '',
+})
+
+function submit() {
+  axios.post('send-contact', frmData).then((data) => {
+    if (data.data.status == 1) {
+      toaster.success(data.data.message)
+      frmData.name = ''
+      frmData.email = ''
+      frmData.phone = ''
+      frmData.message = ''
+    } else {
+      toaster.error(data.data.message)
+    }
+  })
+
+  return {
+    submit,
+    frmData,
+  }
+}
 </script>
 
 <style lang="scss">
@@ -100,6 +138,7 @@ export default {}
       transition: 0.3s;
       padding: 10px 20px;
       margin-bottom: 24px;
+      &:focus,
       &:hover {
         border-color: #f8ac19;
       }

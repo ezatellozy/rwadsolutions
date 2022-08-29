@@ -1,21 +1,26 @@
 <template>
-  <a href="#" target="_blank" class="service">
+  <a href="#" target="_blank" class="service" v-if="service">
     <div class="img-holder">
-      <img src="@/assets/logo.png" class="img-fluid" alt="service" />
+      <img
+        v-if="service.image"
+        :src="service.image"
+        class="img-fluid"
+        alt="service"
+      />
     </div>
     <div class="text">
-      <h2>Rwad crm</h2>
+      <h2>{{ service.name }}</h2>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-        aperiam, non porro ut nemo quae illum. Explicabo quibusdam libero sequi
-        aperiam minus ullam iste ipsam architecto iusto qui, id enim.
+        {{ service.description }}
       </p>
     </div>
   </a>
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['service'],
+}
 </script>
 
 <style lang="scss">

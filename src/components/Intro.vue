@@ -1,24 +1,22 @@
 <template>
   <div class="intro">
     <section class="intro-content content">
-      <div class="container">
+      <div class="container" v-if="items">
         <div class="row align-items-center">
           <div class="col-lg-6 info">
-            <h1>مرحبا بك في حلول رواد</h1>
-            <h2>رواد CRM - برنامج ادارة علاقات العملاء</h2>
+            <h1>{{ items.welcomeMsg }}</h1>
+            <h2>{{ items.title }}</h2>
             <p>
-              سوف يساعدك رواد CRM في تسجيل وحفظ بيانات العملاء بشكل منظم وتفصيلي
-              وتسهيل عملية شراء بشكل احترافي وسرعة التواصل معهم وبالتالي زيادة
-              المبيعات. حيث يعمل نظام رواد CRM على تصنيف كل مرحلة من مراحل البيع
-              حسب احتياج العميل مع تواجد خدمة عملاء ليسجلوا ماذا يحدث مع العميل
-              بالتفصيل. وبامكانك ايضا امكانية ربط النظام عن طريق تطبيقات
-              للاندرويد والايفون ليسهل على المستخدمين امكانية الحصول على
-              احتياجهم في اي وقت واي مكان بحيث يتوافر عضوية لكل مسئول على حسب
-              الوظيفة الخاصة به في الشركة.
+              {{ items.description }}
             </p>
           </div>
           <div class="col-lg-6 image">
-            <img src="@/assets/follow.png" class="img-fluid" alt="rwad-intro" />
+            <img
+              v-if="items.image"
+              :src="items.image"
+              class="img-fluid"
+              alt="rwad-intro"
+            />
           </div>
         </div>
       </div>
@@ -27,8 +25,7 @@
 </template>
 
 <script>
-// import Header from './Header.vue'
-// export default { components: { Header } }
+export default { props: ['items'] }
 </script>
 
 <style lang="scss">

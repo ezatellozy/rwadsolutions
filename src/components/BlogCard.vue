@@ -1,20 +1,16 @@
 <template>
-  <div class="blog">
+  <div class="blog" v-if="item">
     <div class="card">
       <img
-        src="@/assets/article.webp"
+        v-if="item.image"
+        :src="item.image"
         class="card-img-top"
         alt="article-image"
       />
       <div class="card-body">
-        <h3 class="card-title">Card title</h3>
-        <p class="card-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, atque
-          delectus. Error ipsam veniam quidem ad magnam voluptatum labore minus
-          commodi dolorum, asperiores explicabo ex sint id provident officia
-          obcaecati?
-        </p>
-        <router-link to="/blogs/12" class="see-more-btn">
+        <h3 class="card-title">{{ item.title }}</h3>
+        <div class="card-text" v-html="item.description"></div>
+        <router-link :to="`/blogs/${item.id}`" class="see-more-btn">
           Go somewhere
           <i class="fa-solid fa-arrow-left-long"></i>
         </router-link>
@@ -24,11 +20,18 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['item'],
+}
 </script>
 
 <style lang="scss">
 .blog {
+  .card > img {
+    min-height: 300px;
+    max-height: 300px;
+    object-fit: cover;
+  }
   .card-title {
     color: #1b6096;
     margin-bottom: 15px;

@@ -3,8 +3,8 @@
     <h3 class="title">أحدث الاخبار</h3>
     <div class="container">
       <div class="row">
-        <div class="mb-5 mb-md-0 col-md-6 col-lg-4" v-for="n in 3" :key="n">
-          <BlogCard />
+        <div class="mb-5 mb-lg-0 col-md-6 col-lg-4" v-for="n in 3" :key="n">
+          <BlogCard :item="items[n]" />
         </div>
       </div>
       <div class="text-center mt-5">
@@ -16,7 +16,10 @@
 
 <script>
 import BlogCard from './BlogCard.vue'
-export default { components: { BlogCard } }
+export default {
+  components: { BlogCard },
+  props: ['items'],
+}
 </script>
 
 <style lang="scss">

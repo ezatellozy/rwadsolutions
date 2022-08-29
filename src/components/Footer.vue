@@ -3,41 +3,47 @@
     <div class="container">
       <div class="">
         <div class="logo">
-          <div class="img-container">
-            <img src="@/assets/logo.png" alt="rwad-logo" class="img-fluid" />
+          <div class="img-container" v-if="general">
+            <img
+              v-if="general.logo"
+              :src="general.logo"
+              alt="rwad-logo"
+              class="img-fluid"
+            />
           </div>
-          <p class="description">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae
-            beatae placeat earum saepe molestias! Veniam nobis at obcaecati
-            laborum doloribus explicabo quos impedit quasi adipisci, esse
-            delectus expedita est facilis!
+          <p class="description" v-if="aboutUs">
+            {{ aboutUs.description }}
           </p>
         </div>
-        <div class="info">
+        <div class="info" v-if="general">
           <div class="contact d-flex justify-content-center">
-            <a href="mailto:test@test.com" class="link ml-4">
+            <a
+              :href="`mailto:${general.email}`"
+              class="link ml-4"
+              v-if="general.email"
+            >
               <i class="fa-solid fa-envelope"></i>
-              test@test.com
+              {{ general.email }}
             </a>
-            <a href="tel:1010101010" class="link">
+            <a :href="`tel:${general.phone}`" class="link" v-if="general.phone">
               <i class="fa-solid fa-phone-flip"></i>
-              101010101010
+              {{ general.phone }}
             </a>
           </div>
           <div>
             <ul class="list-unstyled p-0 d-flex social">
-              <li>
-                <a href="" target="_blank">
+              <li v-if="general.facebook">
+                <a :href="general.facebook" target="_blank">
                   <i class="fa-brands fa-facebook"></i>
                 </a>
               </li>
-              <li>
-                <a href="" target="_blank">
+              <li v-if="general.twitter">
+                <a :href="general.twitter" target="_blank">
                   <i class="fa-brands fa-twitter"></i>
                 </a>
               </li>
-              <li>
-                <a href="" target="_blank">
+              <li v-if="general.instagram">
+                <a :href="general.instagram" target="_blank">
                   <i class="fa-brands fa-instagram"></i>
                 </a>
               </li>
@@ -56,6 +62,7 @@
 
 <script>
 export default {
+  props: ['general', 'aboutUs'],
   computed: {
     Year() {
       return new Date().getFullYear()

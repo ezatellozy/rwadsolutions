@@ -1,12 +1,12 @@
 <template>
-  <Header />
+  <Header :general="general" v-if="general" />
 
   <router-view v-slot="{ Component }">
     <transition name="fade">
       <component :is="Component" />
     </transition>
   </router-view>
-  <Footer />
+  <Footer :general="general" :aboutUs="aboutUs" />
   <GoTop />
   <WhatsApp />
 </template>
@@ -18,6 +18,23 @@ import WhatsApp from './components/WhatsApp.vue'
 
 export default {
   components: { Footer, Header, GoTop, WhatsApp },
+  data() {
+    return {
+      general: null,
+      aboutUs: null,
+    }
+  },
+  mounted() {
+    this.getLists()
+  },
+  methods: {
+    getLists() {
+      this.axios.get('lists').then((data) => {
+        this.general = data.data.data.general
+        this.aboutUs = data.data.data.aboutUs
+      })
+    },
+  },
 }
 </script>
 

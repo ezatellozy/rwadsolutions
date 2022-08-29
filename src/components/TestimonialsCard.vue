@@ -4,20 +4,17 @@
       <i class="fa-solid fa-quote-left top-left"></i>
       <i class="fa-solid fa-quote-right bottom-right"></i>
       <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero
-        molestiae quam quis vitae. Maxime aliquam quibusdam aspernatur, sunt
-        ratione culpa ullam ducimus expedita tempora. Exercitationem corrupti
-        doloribus cumque dolores hic?
+        {{ item.description }}
       </p>
     </div>
     <div class="client info">
       <div class="row align-items-center">
         <div class="col-3 img-container">
-          <img src="@/assets/avatar.webp" alt="client-img" />
+          <img v-if="item.image" :src="item.image" alt="client-img" />
         </div>
         <div class="col-9">
-          <h3 class="name">Mohamed Ahmed</h3>
-          <h6 class="job">CEO - Founder</h6>
+          <h3 class="name">{{ item.name }}</h3>
+          <h6 class="job">{{ item.job }}</h6>
         </div>
       </div>
     </div>
@@ -25,7 +22,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['item'],
+}
 </script>
 
 <style lang="scss">

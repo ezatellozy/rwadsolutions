@@ -1,11 +1,13 @@
 <template>
-  <Intro />
-  <AboutUs />
-  <Services />
-  <WhyUs />
-  <Clients />
-  <Blogs />
-  <Testimonials />
+  <Intro v-if="header" :items="header" />
+  <AboutUs v-if="aboutUs" :items="aboutUs" />
+  <Services v-if="services" :items="services" />
+  <div v-if="features">
+    <WhyUs v-for="feature in features" :key="feature.id" :items="feature" />
+  </div>
+  <Clients v-if="clients" :items="clients" />
+  <Blogs v-if="blogs" :items="blogs" />
+  <Testimonials v-if="testimonials" :items="testimonials" />
   <ContactUs />
 </template>
 
@@ -29,6 +31,36 @@ export default {
     Blogs,
     Testimonials,
     ContactUs,
+  },
+  data() {
+    return {
+      lists: null,
+      header: null,
+      aboutUs: null,
+      services: null,
+      features: null,
+      clients: null,
+      blogs: null,
+      testimonials: null,
+      general: null,
+    }
+  },
+  mounted() {
+    this.getLists()
+  },
+  methods: {
+    getLists() {
+      this.axios.get('lists').then((data) => {
+        this.header = data.data.data.header
+        this.aboutUs = data.data.data.aboutUs
+        this.services = data.data.data.services
+        this.features = data.data.data.features
+        this.clients = data.data.data.clients
+        this.blogs = data.data.data.blogs
+        this.general = data.data.data.general
+        this.testimonials = data.data.data.testimonials
+      })
+    },
   },
 }
 </script>

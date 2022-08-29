@@ -1,32 +1,35 @@
 <template>
   <section
     class="content why-us d-flex justify-content-between flex-wrap container-fluid"
+    v-if="items"
   >
     <div class="image">
-      <img src="@/assets/whyus.webp" alt="why-us-image" class="w-100 h-100" />
+      <img
+        v-if="items.image"
+        :src="items.image"
+        alt="why-us-image"
+        class="w-100 h-100"
+      />
     </div>
     <div class="info">
-      <h2 class="title">ليه تختار رواد</h2>
+      <h2 class="title">{{ items.title }}</h2>
       <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-        officiis rem dolor quisquam veritatis eos quam, cupiditate unde
-        voluptate aspernatur, quia id? Dicta et laudantium, officia ea
-        dignissimos minima blanditiis.
+        {{ items.description }}
       </p>
       <div class="featuers">
         <div class="row">
-          <div class="col-md-6 mt-5" v-for="n in 3" :key="n">
+          <div
+            class="col-md-6 mt-5"
+            v-for="feature in items.featureList"
+            :key="feature.id"
+          >
             <div class="row">
               <div class="col-3">
-                <img
-                  src="@/assets/settings.png"
-                  alt="icon features"
-                  class="img-fluid"
-                />
+                <i :class="feature.icon"></i>
               </div>
               <div class="col-9">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  {{ feature.title }}
                 </p>
               </div>
             </div>
@@ -38,10 +41,17 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['items'],
+}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.content {
+  &:nth-child(odd) {
+    flex-direction: row-reverse;
+  }
+}
 .why-us {
   background: fixed url('@/assets/gray-bg.jpg');
   background-size: cover;
