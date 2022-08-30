@@ -3,10 +3,8 @@
     <div class="container">
       <h3 class="title">تواصل معنا</h3>
       <p class="description m-0 mx-auto text-center">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quia
-        quisquam molestiae officia quasi suscipit dolore temporibus,
-        reprehenderit eaque enim velit modi nisi corrupti omnis, inventore sequi
-        obcaecati voluptatibus soluta!
+        نرجو ان تتواصل معنا بأي اقتراح او استفسار او افكار حاول التعاون والعمل
+        معنا وسوف نقوم بالتواصل معك في اسرع وقت ممكن
       </p>
       <div class="form mt-5">
         <form @submit.prevent="submit">

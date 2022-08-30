@@ -2,7 +2,7 @@
   <div class="testimonials">
     <h3 class="title">أراء العملاء</h3>
     <div class="container">
-      <div class="row">
+      <div class="row justify-content-center">
         <div
           class="col-sm-6 mb-3 mb-md-0 col-md-4"
           v-for="item in items"
