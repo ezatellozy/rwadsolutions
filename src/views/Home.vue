@@ -1,14 +1,17 @@
 <template>
-  <Intro v-if="header" :items="header" />
-  <AboutUs v-if="aboutUs" :items="aboutUs" />
-  <Services v-if="services" :items="services" />
-  <div v-if="features">
-    <WhyUs v-for="feature in features" :key="feature.id" :items="feature" />
+  <Loading v-if="loading" />
+  <div class="home-wrapper" v-else>
+    <Intro v-if="header" :items="header" />
+    <AboutUs v-if="aboutUs" :items="aboutUs" />
+    <Services v-if="services" :items="services" />
+    <div v-if="features">
+      <WhyUs v-for="feature in features" :key="feature.id" :items="feature" />
+    </div>
+    <Clients v-if="clients" :items="clients" />
+    <Blogs v-if="blogs" :items="blogs" />
+    <Testimonials v-if="testimonials" :items="testimonials" />
+    <ContactUs />
   </div>
-  <Clients v-if="clients" :items="clients" />
-  <Blogs v-if="blogs" :items="blogs" />
-  <Testimonials v-if="testimonials" :items="testimonials" />
-  <ContactUs />
 </template>
 
 <script>
@@ -20,6 +23,7 @@ import Clients from '@/components/Clients.vue'
 import Blogs from '@/components/Blogs.vue'
 import Testimonials from '@/components/Testimonials.vue'
 import ContactUs from '@/components/ContactUs.vue'
+import Loading from '@/components/Loading.vue'
 export default {
   name: 'Home',
   components: {
@@ -31,9 +35,11 @@ export default {
     Blogs,
     Testimonials,
     ContactUs,
+    Loading,
   },
   data() {
     return {
+      loading: false,
       lists: null,
       header: null,
       aboutUs: null,
@@ -50,6 +56,7 @@ export default {
   },
   methods: {
     getLists() {
+      this.loading = true
       this.axios.get('lists').then((data) => {
         this.header = data.data.data.header
         this.aboutUs = data.data.data.aboutUs
@@ -59,6 +66,7 @@ export default {
         this.blogs = data.data.data.blogs
         this.general = data.data.data.general
         this.testimonials = data.data.data.testimonials
+        this.loading = false
       })
     },
   },

@@ -4,7 +4,7 @@
       <div class="card flex-row">
         <img
           v-if="item.image"
-          :src="item.image"
+          v-lazy="item.image"
           class="card-img-top"
           alt="article-image"
         />
@@ -13,7 +13,7 @@
             {{ item.title }}
           </p>
           <router-link :to="`/blogs/${item.id}`" class="see-more-btn">
-            Go somewhere
+            المزيد
             <i class="fa-solid fa-arrow-left-long"></i>
           </router-link>
         </div>

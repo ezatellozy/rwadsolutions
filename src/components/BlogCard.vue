@@ -3,7 +3,7 @@
     <div class="card">
       <img
         v-if="item.image"
-        :src="item.image"
+        v-lazy="item.image"
         class="card-img-top"
         alt="article-image"
       />
@@ -11,7 +11,7 @@
         <h3 class="card-title">{{ item.title }}</h3>
         <div class="card-text" v-html="item.description"></div>
         <router-link :to="`/blogs/${item.id}`" class="see-more-btn">
-          Go somewhere
+          المزيد
           <i class="fa-solid fa-arrow-left-long"></i>
         </router-link>
       </div>

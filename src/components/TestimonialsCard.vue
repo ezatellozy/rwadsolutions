@@ -10,7 +10,7 @@
     <div class="client info">
       <div class="row align-items-center">
         <div class="col-3 img-container">
-          <img v-if="item.image" :src="item.image" alt="client-img" />
+          <img v-if="item.image" v-lazy="item.image" alt="client-img" />
         </div>
         <div class="col-9">
           <h3 class="name">{{ item.name }}</h3>

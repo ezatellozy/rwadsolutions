@@ -6,7 +6,7 @@
           <div class="img-container" v-if="general">
             <img
               v-if="general.logo"
-              :src="general.logo"
+              v-lazy="general.logo"
               alt="rwad-logo"
               class="img-fluid"
             />

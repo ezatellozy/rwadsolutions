@@ -3,17 +3,17 @@
     <section class="intro-content content">
       <div class="container" v-if="items">
         <div class="row align-items-center">
-          <div class="col-lg-6 info">
+          <div class="info" :class="items.image ? 'col-lg-6' : 'col-lg-12'">
             <h1>{{ items.welcomeMsg }}</h1>
             <h2>{{ items.title }}</h2>
             <p>
               {{ items.description }}
             </p>
           </div>
-          <div class="col-lg-6 image">
+          <div class="col-lg-6 image" v-if="items.image">
             <img
               v-if="items.image"
-              :src="items.image"
+              v-lazy="items.image"
               class="img-fluid"
               alt="rwad-intro"
             />
@@ -74,7 +74,7 @@ export default { props: ['items'] }
       .info {
         text-align: start;
         h2 {
-          font-size: 40px;
+          font-size: 37px;
           margin-bottom: 20px;
         }
       }

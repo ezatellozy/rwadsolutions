@@ -40,7 +40,7 @@
               <div class="img-container text-center">
                 <img
                   v-if="blog.image"
-                  :src="blog.image"
+                  v-lazy="blog.image"
                   alt="article-image"
                   class="img-fluid"
                 />

@@ -12,7 +12,7 @@
         >
           <img
             v-if="item.image"
-            :src="item.image"
+            v-lazy="item.image"
             alt="client-logo"
             class="img-fluid"
           />

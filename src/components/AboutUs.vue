@@ -2,15 +2,15 @@
   <section class="content about-us" id="about-us">
     <div class="container" v-if="items">
       <div class="row align-items-center">
-        <div class="col-lg-6 image">
+        <div class="col-lg-6 image" v-if="items.image">
           <img
             v-if="items.image"
-            :src="items.image"
+            v-lazy="items.image"
             class="img-fluid"
             alt="about-us"
           />
         </div>
-        <div class="col-lg-6 info">
+        <div class="info" :class="items.image ? 'col-lg-6' : 'col-lg-12'">
           <h2 class="title">{{ items.title }}</h2>
           <p>
             {{ items.description }}

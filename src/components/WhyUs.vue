@@ -6,7 +6,7 @@
     <div class="image">
       <img
         v-if="items.image"
-        :src="items.image"
+        v-lazy="items.image"
         alt="why-us-image"
         class="w-100 h-100"
       />

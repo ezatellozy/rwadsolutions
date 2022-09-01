@@ -6,7 +6,7 @@
       <component :is="Component" />
     </transition>
   </router-view>
-  <Footer :general="general" :aboutUs="aboutUs" />
+  <Footer v-if="!loading" :general="general" :aboutUs="aboutUs" />
   <GoTop />
   <WhatsApp />
 </template>
@@ -20,6 +20,7 @@ export default {
   components: { Footer, Header, GoTop, WhatsApp },
   data() {
     return {
+      loading: false,
       general: null,
       aboutUs: null,
     }
@@ -29,9 +30,11 @@ export default {
   },
   methods: {
     getLists() {
+      this.loading = true
       this.axios.get('lists').then((data) => {
         this.general = data.data.data.general
         this.aboutUs = data.data.data.aboutUs
+        this.loading = false
       })
     },
   },

@@ -1,10 +1,10 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img
           v-if="general.logo"
-          :src="general.logo"
+          v-lazy="general.logo"
           class="img-fluid"
           alt="rwad-logo"
         />

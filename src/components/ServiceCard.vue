@@ -1,9 +1,9 @@
 <template>
-  <a href="#" target="_blank" class="service" v-if="service">
+  <a :href="service.link" target="_blank" class="service h-100" v-if="service">
     <div class="img-holder">
       <img
         v-if="service.image"
-        :src="service.image"
+        v-lazy="service.image"
         class="img-fluid"
         alt="service"
       />
