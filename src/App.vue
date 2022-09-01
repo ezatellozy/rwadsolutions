@@ -42,10 +42,6 @@ export default {
 </script>
 
 <style lang="scss">
-.content:nth-child(odd) .container > .row {
-  flex-direction: row-reverse;
-}
-
 h3.title {
   position: relative;
   margin-bottom: 50px;
