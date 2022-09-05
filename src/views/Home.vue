@@ -53,6 +53,7 @@ export default {
   },
   mounted() {
     this.getLists()
+    this.getBlogs()
   },
   methods: {
     getLists() {
@@ -66,6 +67,13 @@ export default {
         this.blogs = data.data.data.blogs
         this.general = data.data.data.general
         this.testimonials = data.data.data.testimonials
+        this.loading = false
+      })
+    },
+    getBlogs() {
+      this.loading = true
+      this.axios.get('get-blogs').then((data) => {
+        this.blogs = data.data.data
         this.loading = false
       })
     },

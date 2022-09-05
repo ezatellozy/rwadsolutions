@@ -4,13 +4,13 @@
       <div class="row">
         <div class="d-none d-xl-block col-xl-3 p-0 side">
           <div class="section top-rated">
-            <h2 class="title">top rated</h2>
+            <h2 class="title">الاعلي تفاعلا</h2>
             <div class="content" v-for="blog in blogs" :key="blog.id">
               <BlogCardSide :item="blog" />
             </div>
           </div>
           <div class="section most-viewd">
-            <h2 class="title">most viewd</h2>
+            <h2 class="title">الاكثر مشاهده</h2>
             <div class="content" v-for="blog in blogs" :key="blog.id">
               <BlogCardSide :item="blog" />
             </div>
@@ -23,6 +23,7 @@
             </div>
             <div v-if="blogs">
               <paginate
+                v-if="blogs.length > 5"
                 v-model="page"
                 :page-count="pages"
                 :page-range="2"
@@ -205,6 +206,7 @@ export default {
           .then((data) => {
             this.blogs = data.data.data
             this.pages = data.data.countOfPages
+
             return
           })
       }
@@ -220,6 +222,7 @@ export default {
           return
         }
         this.blog = data.data.data
+        this.comments = data.data.data.comments
       })
     },
     submit() {
@@ -232,6 +235,9 @@ export default {
       this.axios.post('send-comment', frmData).then((data) => {
         if (data.data.status == 1) {
           toaster.success(data.data.message)
+          this.$nextTick(() => {
+            this.getBlogDetails()
+          })
           this.name = ''
           this.email = ''
           this.comment = ''
@@ -381,8 +387,7 @@ export default {
     }
     .form-group {
       margin-bottom: 1rem;
-      input {
-      }
+
       input,
       textarea {
         border: none;

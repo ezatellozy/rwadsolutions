@@ -1,10 +1,14 @@
 <template>
-  <div class="blogs" id="blogs">
+  <div class="blogs" id="blogs" v-if="items">
     <h3 class="title">أحدث الاخبار</h3>
     <div class="container">
       <div class="row">
-        <div class="mb-5 mb-lg-0 col-md-6 col-lg-4" v-for="n in 3" :key="n">
-          <BlogCard :item="items[n]" />
+        <div
+          class="mb-5 mb-lg-0 col-md-6 col-lg-4"
+          v-for="n in items.length > 2 ? 3 : 1"
+          :key="n"
+        >
+          <BlogCard :item="items.length > 2 ? items[n] : items[0]" />
         </div>
       </div>
       <div class="text-center mt-5">
